@@ -26,16 +26,16 @@ COUNT = 0
 PAGE_NO = 1
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Uploading...📤"
-    STATUS_DOWNLOADING = "Downloading...📥"
-    STATUS_CLONING = "Cloning...♻️"
-    STATUS_WAITING = "Queued...💤"
-    STATUS_PAUSED = "Paused...⛔️"
-    STATUS_ARCHIVING = "Archiving...🔐"
-    STATUS_EXTRACTING = "Extracting...📂"
-    STATUS_SPLITTING = "Splitting...✂️"
-    STATUS_CHECKING = "CheckingUp...📝"
-    STATUS_SEEDING = "Seeding...🌧"
+    STATUS_UPLOADING = "Uploading..."
+    STATUS_DOWNLOADING = "Downloading..."
+    STATUS_CLONING = "Cloning..."
+    STATUS_WAITING = "Queued..."
+    STATUS_PAUSED = "Paused..."
+    STATUS_ARCHIVING = "Archiving..."
+    STATUS_EXTRACTING = "Extracting..."
+    STATUS_SPLITTING = "Splitting..."
+    STATUS_CHECKING = "CheckingUp..."
+    STATUS_SEEDING = "Seeding..."
 
 class EngineStatus:
     STATUS_ARIA = "Aria2c v1.35.0"
@@ -345,7 +345,7 @@ def is_gdtot_link(url: str):
     return bool(url)
 
 def is_appdrive_link(url: str):
-    url = re_match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.in/\S+', url)
+    url = re_match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.info/\S+', url)
     return bool(url)
 
 def is_mega_link(url: str):
@@ -436,7 +436,7 @@ CPU: {cpu}% | RAM: {mem}%
 Disk: {total} | Free: {free}
 Used: {used} [{disk}%]
 
-Made with ❤️ by Dawn
+NOiCE
 """
     return stats
 

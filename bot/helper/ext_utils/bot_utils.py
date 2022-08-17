@@ -3,15 +3,15 @@ from threading import Thread, Event
 from time import time
 from math import ceil
 from html import escape
+from psutil import virtual_memory, cpu_percent, disk_usage
 from requests import head as rhead
 from urllib.request import urlopen
+from telegram import InlineKeyboardMarkup
 from bot import download_dict, download_dict_lock, STATUS_LIMIT, botStartTime, DOWNLOAD_DIR, WEB_PINCODE, BASE_URL
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.button_build import ButtonMaker
 import shutil
 import psutil
-from psutil import virtual_memory, cpu_percent, disk_usage
-from telegram import InlineKeyboardMarkup
 from telegram.error import RetryAfter
 from telegram.ext import CallbackQueryHandler
 from telegram.message import Message
@@ -26,16 +26,16 @@ COUNT = 0
 PAGE_NO = 1
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Uploading...📤"
-    STATUS_DOWNLOADING = "Downloading...📥"
-    STATUS_CLONING = "Cloning...♻️"
-    STATUS_WAITING = "Queued...💤"
-    STATUS_PAUSED = "Paused...⛔️"
-    STATUS_ARCHIVING = "Archiving...🔐"
-    STATUS_EXTRACTING = "Extracting...📂"
-    STATUS_SPLITTING = "Splitting...✂️"
-    STATUS_CHECKING = "CheckingUp...📝"
-    STATUS_SEEDING = "Seeding...🌧"
+    STATUS_UPLOADING = "Uploading..."
+    STATUS_DOWNLOADING = "Downloading..."
+    STATUS_CLONING = "Cloning..."
+    STATUS_WAITING = "Queued..."
+    STATUS_PAUSED = "Paused..."
+    STATUS_ARCHIVING = "Archiving..."
+    STATUS_EXTRACTING = "Extracting..."
+    STATUS_SPLITTING = "Splitting..."
+    STATUS_CHECKING = "CheckingUp..."
+    STATUS_SEEDING = "Seeding..."
 
 class EngineStatus:
     STATUS_ARIA = "Aria2c v1.35.0"
@@ -49,10 +49,9 @@ class EngineStatus:
     STATUS_ZIP = "p7zip v16.02"
 
 PROGRESS_MAX_SIZE = 100 // 9
-PROGRESS_INCOMPLETE = ['◌', '◌', '◎', '◎', '◎', '◍', '◍', '◍']
+PROGRESS_INCOMPLETE = ['▤', '▤', '▦', '▦', '▦', '▩', '▩']
 
 SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
-
 
 class setInterval:
     def __init__(self, interval, action):
@@ -100,7 +99,11 @@ def getAllDownload(req_status: str):
     return None
 
 def bt_selection_buttons(id_: str):
-    gid = id_[:12] if len(id_) > 20 else id_
+    if len(id_) > 20:
+        gid = id_[:12]
+    else:
+        gid = id_
+
     pincode = ""
     for n in id_:
         if n.isdigit():
@@ -124,7 +127,7 @@ def get_progress_bar_string(status):
     p = min(max(p, 0), 100)
     cFull = p // 8
     cPart = p % 8 - 1
-    p_str = '◉' * cFull
+    p_str = '■' * cFull
     if cPart >= 0:
         p_str += PROGRESS_INCOMPLETE[cPart]
     p_str += '○' * (PROGRESS_MAX_SIZE - cFull)
@@ -287,7 +290,6 @@ def get_readable_message():
             buttons.sbutton("Refresh", str(ONE))
             buttons.sbutton("Close", str(TWO))
             button = InlineKeyboardMarkup(buttons.build_menu(3))
-
             return msg + bmsg, button
         return msg + bmsg, sbutton
 
@@ -343,7 +345,7 @@ def is_gdtot_link(url: str):
     return bool(url)
 
 def is_appdrive_link(url: str):
-    url = re_match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.in/\S+', url)
+    url = re_match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.info/\S+', url)
     return bool(url)
 
 def is_mega_link(url: str):
@@ -434,12 +436,10 @@ CPU: {cpu}% | RAM: {mem}%
 Disk: {total} | Free: {free}
 Used: {used} [{disk}%]
 
-Made with ❤️ by Dawn
+NOiCE
 """
     return stats
 
-dispatcher.add_handler(CallbackQueryHandler(refresh, pattern=f"^{str(ONE)}$"))
-dispatcher.add_handler(CallbackQueryHandler(close, pattern=f"^{str(TWO)}$"))
-dispatcher.add_handler(
-    CallbackQueryHandler(pop_up_stats, pattern=f"^{str(THREE)}$")
-)
+dispatcher.add_handler(CallbackQueryHandler(refresh, pattern="^" + str(ONE) + "$"))
+dispatcher.add_handler(CallbackQueryHandler(close, pattern="^" + str(TWO) + "$"))
+dispatcher.add_handler(CallbackQueryHandler(pop_up_stats, pattern="^" + str(THREE) + "$"))

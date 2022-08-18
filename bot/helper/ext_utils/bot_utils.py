@@ -348,6 +348,10 @@ def is_appdrive_link(url: str):
     url = re_match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.info/\S+', url)
     return bool(url)
 
+def is_appdrive_link(url: str):
+    url = re_match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.in/\S+', url)
+    return bool(url)
+
 def is_mega_link(url: str):
     return "mega.nz" in url or "mega.co.nz" in url
 
@@ -393,7 +397,7 @@ ONE, TWO, THREE = range(3)
 
 def refresh(update, context):
     query = update.callback_query
-    query.edit_message_text(text="Refreshing Status...⏳")
+    query.edit_message_text(text="Refreshing Status...")
     sleep(5)
     update_all_messages()
 

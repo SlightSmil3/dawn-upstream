@@ -32,6 +32,16 @@ class _BotCommands:
         self.DeleteCommand = f'del{CMD_INDEX}'
         self.ShellCommand = f'shell{CMD_INDEX}'
         self.ExecHelpCommand = f'exechelp{CMD_INDEX}'
+        self.LeechSetCommand = f'leechset{CMD_INDEX}'
+        self.SetThumbCommand = f'aoxhsjahsuajjanwjwj19282772817272{CMD_INDEX}'
+        self.LeechCommand = f'leech2827272sjshagvagshwjanabs{CMD_INDEX}'
+        self.UnzipLeechCommand = f'unzipajajhagsgahaha18272762{CMD_INDEX}'
+        self.ZipLeechCommand = f'sjajaha18272jj{CMD_INDEX}'
+        self.QbLeechCommand = f'qbleechsjwhhahwhwhwha{CMD_INDEX}'
+        self.QbUnzipLeechCommand = f'wjshshhwhs28171{CMD_INDEX}'
+        self.QbZipLeechCommand = f'ejwjjshwhw18282{CMD_INDEX}'
+        self.LeechWatchCommand = f'sjsjbwhwhsjs181{CMD_INDEX}'
+        self.LeechZipWatchCommand = f'leechzipwatch92827272sjhshsbshs{CMD_INDEX}'
         self.BtSelectCommand = f'btsel{CMD_INDEX}'
         self.RssListCommand = f'rsslist{CMD_INDEX}'
         self.RssGetCommand = f'rssget{CMD_INDEX}'
@@ -41,6 +51,5 @@ class _BotCommands:
         self.EvalCommand = f'eval{CMD_INDEX}'
         self.ExecCommand = f'exec{CMD_INDEX}'
         self.ClearLocalsCommand = f'clearlocals{CMD_INDEX}'
-        self.SleepCommand = f'sleep{CMD_INDEX}'
 
 BotCommands = _BotCommands()

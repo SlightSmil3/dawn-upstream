@@ -20,7 +20,7 @@ class _BotCommands:
         self.PingCommand = f'ping{CMD_INDEX}'
         self.RestartCommand = f'restart{CMD_INDEX}'
         self.StatsCommand = f'stats{CMD_INDEX}'
-        self.HelpCommand = f'help{CMD_INDEX}'
+        self.HelpCommand = f'xyzhelp{CMD_INDEX}'
         self.LogCommand = f'log{CMD_INDEX}'
         self.CloneCommand = f'clone{CMD_INDEX}'
         self.CountCommand = f'count{CMD_INDEX}'

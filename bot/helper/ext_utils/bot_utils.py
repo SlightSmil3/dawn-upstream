@@ -258,7 +258,7 @@ def get_readable_message():
             return None, None
         bmsg = f"\n<b>_____________________________________</b>"
         bmsg += f"\n<b>Disk:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
-        bmsg += f"<b> | UPTM:</b> {get_readable_time(time() - botStartTime)}"
+        bmsg += f"<b> | Uptime:</b> {get_readable_time(time() - botStartTime)}"
         dlspeed_bytes = 0
         upspeed_bytes = 0
         for download in list(download_dict.values()):
@@ -273,7 +273,7 @@ def get_readable_message():
                     upspeed_bytes += float(spd.split('K')[0]) * 1024
                 elif 'MB/s' in spd:
                     upspeed_bytes += float(spd.split('M')[0]) * 1048576
-        bmsg += f"\n<b>DN:</b> {get_readable_file_size(dlspeed_bytes)}/s<b> | UP:</b> {get_readable_file_size(upspeed_bytes)}/s"
+        bmsg += f"\n<b>Down:</b> {get_readable_file_size(dlspeed_bytes)}/s<b> | Up:</b> {get_readable_file_size(upspeed_bytes)}/s"
 
         buttons = ButtonMaker()
         buttons.sbutton("Refresh", str(ONE))

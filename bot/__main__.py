@@ -122,28 +122,11 @@ help = telegraph.create_page(
     )["path"]
 
 help_string = f'''
-/{BotCommands.PingCommand}: Check how long it takes to Ping the Bot
-
-/{BotCommands.AuthorizeCommand}: Authorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
-
-/{BotCommands.UnAuthorizeCommand}: Unauthorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
-
-/{BotCommands.AuthorizedUsersCommand}: Show authorized users (Only Owner & Sudo)
-
-/{BotCommands.AddSudoCommand}: Add sudo user (Only Owner)
-
-/{BotCommands.RmSudoCommand}: Remove sudo users (Only Owner)
-
-/{BotCommands.RestartCommand}: Restart and update the bot
-
-/{BotCommands.SleepCommand}: IDLE the bot
-
-/{BotCommands.LogCommand}: Get a log file of the bot. Handy for getting crash reports
-'''
+Click the button below'''
 
 def bot_help(update, context):
     button = ButtonMaker()
-    button.buildbutton("Other Commands", f"https://telegra.ph/{help}")
+    button.buildbutton("Commands", f"https://telegra.ph/{help}")
     reply_markup = InlineKeyboardMarkup(button.build_menu(1))
     sendMarkup(help_string, context.bot, update.message, reply_markup)
 
